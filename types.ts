@@ -22,7 +22,7 @@ export interface Product {
 }
 
 export interface Image {
-  is: string;
+  id: string;
   url: string;
 }
 
