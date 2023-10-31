@@ -4,7 +4,10 @@ import { forwardRef } from "react";
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, disabled, type = "button", ...propTypes }, ref) => {
+  (
+    { className, children, disabled = false, type = "button", ...props },
+    ref
+  ) => {
     return (
       <button
         ref={ref}
@@ -12,6 +15,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           "w-auto rounded-full bg-black border-transparent px-5 py-3 disabled:cursor-not-allowed disabled:opacity-50 text-white font-semibold hover:opacity-75 transition",
           className
         )}
+        {...props}
+        disabled={disabled}
       >
         {children}
       </button>
