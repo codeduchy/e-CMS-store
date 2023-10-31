@@ -6,6 +6,9 @@ import Image from "next/image";
 import IconButton from "./icon-button";
 import Currency from "./currency";
 import { useRouter } from "next/navigation";
+import { MouseEventHandler } from "react";
+import usePreviewModal from "@/hooks/use-preview-modal";
+import useCart from "@/hooks/use-cart";
 
 type ProductCard = {
   data: Product;
@@ -13,8 +16,22 @@ type ProductCard = {
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
   const router = useRouter();
+  const previewModal = usePreviewModal();
+  const cart = useCart();
+
   const handleClick = () => {
     router.push(`/product/${data?.id}`);
+  };
+
+  const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+
+    cart.addItem(data);
+  };
+
+  const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    previewModal.onOpen(data);
   };
 
   return (
@@ -31,9 +48,13 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
         />
         <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-5 bottom-5">
           <div className="flex gap-x-6 justify-center">
-            <IconButton icon={<Expand size={20} className="text-gray-600" />} />
+            <IconButton
+              icon={<Expand size={20} className="text-gray-600" />}
+              onClick={onPreview}
+            />
             <IconButton
               icon={<ShoppingCart size={20} className="text-gray-600" />}
+              onClick={onAddToCart}
             />
           </div>
         </div>
