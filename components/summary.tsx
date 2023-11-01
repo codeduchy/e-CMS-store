@@ -27,12 +27,16 @@ const Summary = () => {
   }, 0);
 
   const onCheckout = async () => {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
-      { productIds: items.map((item) => item.id) }
-    );
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
+        { productIds: items.map((item) => item.id) }
+      );
 
-    window.location = response.data.url;
+      window.location = response.data.url;
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
   };
 
   return (
@@ -44,7 +48,11 @@ const Summary = () => {
           <Currency value={totalPrice} />
         </div>
       </div>
-      <Button onClick={onCheckout} className="w-full mt-6">
+      <Button
+        disabled={items.length === 0}
+        onClick={onCheckout}
+        className="w-full mt-6 disabled:cursor-default"
+      >
         Checkout
       </Button>
     </div>
