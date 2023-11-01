@@ -8,7 +8,7 @@ export const revalidate = 0;
 
 export default async function HomePage() {
   const products = await getProducts({ isFeatured: true });
-  const billboard = await getBillboard("4094de4d-904b-44da-b9d2-c75b568d28ff");
+  const billboard = await getBillboard("e2bf1dbc-6c39-4d09-a1b5-551755349470");
 
   return (
     <Container>

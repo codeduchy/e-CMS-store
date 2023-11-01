@@ -5,20 +5,19 @@ import { Fragment } from "react";
 import IconButton from "./icon-button";
 import { X } from "lucide-react";
 
-interface ModalProps {
+type ModalProps = {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
-}
+};
 
-const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, open, children }) => {
   return (
     <Transition show={open} appear as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
         <div className="fixed inset-0 bg-black bg-opacity-50" />
-
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <div className="flex min-h-full items-center justify-center p-4 text-center ">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"

@@ -1,32 +1,31 @@
-import { Tab } from "@headlessui/react";
-import { Image as ImageType } from "@/types";
-import Image from "next/image";
 import { cn } from "@/libs/utils";
+import { Image as ImageType } from "@/types";
+import { Tab } from "@headlessui/react";
+import Image from "next/image";
 
-interface GalleryTabProps {
+type GalleryTabProps = {
   image: ImageType;
-}
+};
 
 const GalleryTab: React.FC<GalleryTabProps> = ({ image }) => {
   return (
-    <Tab className="relative flex aspect-square cursor-pointer items-center justify-center rounded-md bg-white">
+    <Tab className="relative flex aspect-square cursor-pointer items-center justify-center">
       {({ selected }) => (
-        <div>
-          <span className="absolute h-full w-full aspect-square inset-0 overflow-hidden rounded-md">
-            <Image
-              fill
-              src={image.url}
-              alt=""
-              className="object-cover object-center"
-            />
-          </span>
-          <span
-            className={cn(
-              "absolute inset-0 rounded-md ring-2 ring-offset-2",
-              selected ? "ring-black" : "ring-transparent"
-            )}
+        <span
+          className={cn(
+            "absolute inset-0 ring-2 ring-offset-2 rounded-sm overflow-hidden",
+            selected
+              ? " inset-0 ring-2 ring-offset-2 ring-black/90"
+              : "ring-transparent"
+          )}
+        >
+          <Image
+            fill
+            src={image.url}
+            alt=""
+            className="object-cover object-center rounded-md"
           />
-        </div>
+        </span>
       )}
     </Tab>
   );

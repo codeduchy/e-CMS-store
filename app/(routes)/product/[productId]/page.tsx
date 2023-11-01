@@ -5,11 +5,11 @@ import Gallery from "@/components/gallery";
 import Info from "@/components/info";
 import ProductList from "@/components/product-list";
 
-interface ProductPageProps {
+type ProductPageProps = {
   params: {
     productId: string;
   };
-}
+};
 
 const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
   const product = await getProduct(params.productId);

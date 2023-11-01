@@ -1,15 +1,15 @@
 import getCategory from "@/actions/get-category";
-import getColors from "@/actions/get-colors.tsx";
+import getColors from "@/actions/get-colors";
 import getProducts from "@/actions/get-products";
 import getSizes from "@/actions/get-sizes";
 import Billboard from "@/components/billboard";
 import Container from "@/components/container";
-import Filter from "./components/filter";
+import Filter from "@/components/filter";
+import MobileFilter from "@/components/mobile-filter";
 import NoResults from "@/components/no-results";
-import ProductCard from "@/components/products-card";
-import MobileFilter from "./components/mobile-filter";
+import ProductCard from "@/components/product-card";
 
-interface CategoryPageProps {
+type CategoryPageProps = {
   params: {
     categoryId: string;
   };
@@ -17,7 +17,7 @@ interface CategoryPageProps {
     colorId: string;
     sizeId: string;
   };
-}
+};
 
 const CategoryPage: React.FC<CategoryPageProps> = async ({
   params,
@@ -31,10 +31,9 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
   const sizes = await getSizes();
   const colors = await getColors();
   const category = await getCategory(params.categoryId);
-  // console.log(category);
 
   return (
-    <div className="bg-white">
+    <div>
       <Container>
         <Billboard data={category.billboard} />
         <div className="px-4 sm:px-6 lg:px-8 pb-24">
@@ -46,7 +45,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({
             </div>
             <div className="mt-6 lg:col-span-4 lg:mt-0">
               {products.length === 0 && <NoResults />}
-              <div className="grid grid-cols-1 sm;grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {products.map((item) => (
                   <ProductCard key={item.id} data={item} />
                 ))}

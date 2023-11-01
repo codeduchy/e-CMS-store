@@ -1,12 +1,13 @@
 "use client";
+
 import { Product } from "@/types";
 import Currency from "./currency";
 import Button from "./button";
 import { ShoppingCart } from "lucide-react";
 
-interface InfoProps {
+type InfoProps = {
   data: Product;
-}
+};
 
 const Info: React.FC<InfoProps> = ({ data }) => {
   return (
