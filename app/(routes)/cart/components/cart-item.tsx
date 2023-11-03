@@ -1,6 +1,5 @@
 "use client";
 
-import { toast } from "react-hot-toast";
 import { Product } from "@/types";
 import Image from "next/image";
 import IconButton from "@/components/icon-button";
