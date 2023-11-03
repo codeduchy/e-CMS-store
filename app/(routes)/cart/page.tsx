@@ -4,6 +4,7 @@ import CartItem from "@/components/cart-item";
 import Container from "@/components/container";
 import Summary from "@/components/summary";
 import useCart from "@/hooks/use-cart";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const CartPage = () => {
@@ -13,7 +14,7 @@ const CartPage = () => {
   useEffect(() => {
     setIsMounted(true);
   }, []);
-  if (!isMounted) return null;
+  if (!isMounted) return redirect("/");
 
   return (
     <div className="bg-white">
