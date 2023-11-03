@@ -10,14 +10,6 @@ export default async function HomePage() {
   const products = await getProducts({ isFeatured: true });
   const billboard = await getBillboard("8892e23b-99ed-4b70-a106-dd015bdbd6e2");
 
-  if (products === undefined || billboard === undefined) {
-    return (
-      <div className="text-xl text-semibold">
-        No store found. Create a store first!
-      </div>
-    );
-  }
-
   return (
     <Container>
       <div className="space-y-10 pb-10">

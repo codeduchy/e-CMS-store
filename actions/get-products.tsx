@@ -9,7 +9,7 @@ type Query = {
   isFeatured?: boolean;
 };
 
-const getProducts = async (query: Query): Promise<Product[] | undefined> => {
+const getProducts = async (query: Query): Promise<Product[]> => {
   const url = qs.stringifyUrl({
     url: URL,
     query: {
@@ -22,11 +22,7 @@ const getProducts = async (query: Query): Promise<Product[] | undefined> => {
 
   const res = await fetch(url);
 
-  if (res.ok) {
-    return res.json();
-  } else {
-    return undefined;
-  }
+  return res.json();
 };
 
 export default getProducts;
